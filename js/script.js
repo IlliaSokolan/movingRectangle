@@ -2,6 +2,7 @@ let rec = document.querySelector('.rectangle');
 let body = document.querySelector('body');
 let width = document.documentElement.clientWidth + 0,
     height = document.documentElement.clientHeight + 0;
+let timerId;
 
 // Rectangle start position
     let x = 0,
@@ -13,8 +14,8 @@ rec.style.top = `${y}px`;
 body.addEventListener('contextmenu', makeStepRight)
 body.addEventListener('click', makeStepLeft)
 body.addEventListener('wheel', makeStepVertical)
-rec.addEventListener('mouseover', changeColor)
-rec.addEventListener('mouseleave', changeColorBack)
+rec.addEventListener('mouseenter', changeColor)
+rec.addEventListener('mouseleave', stopChangeColor)
 
 // Functions for making steps
 function makeStepRight(event) {
@@ -38,8 +39,22 @@ function makeStepVertical(event) {
 }
 
 function changeColor() {
-    rec.classList.add('animate')
+
+    let t = 200;
+
+    timerId = setInterval(color, 1); 
+    
+    function color() {
+
+        rec.style.backgroundColor = `hsl(${t}, 80%, 50%)`;
+        t += 2;
+        if (t == 359) t = 0;
+    }
+};
+
+function stopChangeColor() {
+
+    clearTimeout(timerId);
+    rec.style.backgroundColor = '';
 }
-function changeColorBack() {
-    rec.classList.remove('animate')
-}
+

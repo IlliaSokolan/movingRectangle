@@ -8,7 +8,6 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    --hue-color: -160;
 }
 
 .rectangle {
@@ -17,26 +16,6 @@ body {
     position: absolute;
     left: 0;
     top: 0;
-    background-color: hsl(200deg, 80%, 50%);
+    background-color: hsl(200, 80%, 50%);
 }
 
-.animate {
-    animation-duration: 0.5s;
-    animation-name: changecolor;
-    animation-iteration-count: infinite;
-    animation-direction: normal;
-    animation-timing-function: easy;
-    background-color: hsl(var(--hue-color), 80%, 50%);
-}
-
-@keyframes changecolor {
-    0% {
-        --hue-color: -159;
-    }
-    50% {
-        --hue-color: 20;
-    }
-    100% {
-        --hue-color: 200;
-    }
-}
